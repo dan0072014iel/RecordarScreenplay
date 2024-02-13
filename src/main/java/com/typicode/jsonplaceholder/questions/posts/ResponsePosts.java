@@ -11,10 +11,12 @@ import java.util.ArrayList;
 public class ResponsePosts implements Question <ResponseArrayPost> {
     @Override
     public ResponseArrayPost answeredBy(Actor actor) {
+
         return SerenityRest.lastResponse().as(ResponseArrayPost.class);
     }
 
     public static ResponsePosts was(){
+
         return new ResponsePosts();
     }
 }

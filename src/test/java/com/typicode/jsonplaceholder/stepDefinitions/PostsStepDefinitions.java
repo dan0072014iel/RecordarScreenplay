@@ -1,6 +1,7 @@
 package com.typicode.jsonplaceholder.stepDefinitions;
 
 import com.typicode.jsonplaceholder.questions.ResponseServerCode;
+import com.typicode.jsonplaceholder.questions.posts.ResponsePosts;
 import com.typicode.jsonplaceholder.tasks.posts.GetPostsTask;
 import io.cucumber.java.en.*;
 import net.serenitybdd.screenplay.Actor;
@@ -22,7 +23,10 @@ public class PostsStepDefinitions {
     @Then("the posts should appear successfully")
     public void thePostsShouldAppearSuccessfully() {
         admin.should(
-                seeThat(ResponseServerCode.was(), equalTo(200))
+                seeThat(
+                        "The complete response is",
+                        res -> new ResponsePosts().answeredBy(admin).
+                )
         );
     }
 

@@ -1,7 +1,6 @@
 package com.typicode.jsonplaceholder.questions.comments;
 
 import com.typicode.jsonplaceholder.models.comments.ResponseArrayComments;
-import com.typicode.jsonplaceholder.models.comments.ResponseCommentsModel;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
