@@ -1,13 +1,17 @@
 package com.typicode.jsonplaceholder.stepDefinitions;
 
-import com.typicode.jsonplaceholder.models.comments.ResponseCommentsModel;
 import com.typicode.jsonplaceholder.questions.comments.ResponseComments;
 import com.typicode.jsonplaceholder.tasks.comments.GetCommentsTask;
 import io.cucumber.java.en.*;
+import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
+import org.hamcrest.Matchers;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
 
 public class CommentsStepDefinitions {
 
@@ -22,12 +26,21 @@ public class CommentsStepDefinitions {
     @Then("the comments should appear successfully")
     public void theCommentsShouldAppearSuccessfully() {
 
-        /*admin.should(
+        admin.should(
                 seeThat(
-                        "The complete response is",
-                        res -> new ResponseComments().answeredBy(admin).
+                        "The first email ",
+                        res -> new ResponseComments().answeredBy(admin).get(0).getEmail(),
+                        equalTo("Eliseo@gardner.biz")
                 )
-        );*/
+        );
+        admin.should(
+                seeThatResponse(
+                        "The first email is "+ SerenityRest.lastResponse().jsonPath().getString("email[0]"),
+                        res -> res
+                                .statusCode(200)
+                                .body("email", hasItem("Eliseo@gardner.biz"))
+                )
+        );
     }
 
 }

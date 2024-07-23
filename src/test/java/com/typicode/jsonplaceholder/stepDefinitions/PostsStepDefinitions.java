@@ -1,6 +1,5 @@
 package com.typicode.jsonplaceholder.stepDefinitions;
 
-import com.typicode.jsonplaceholder.questions.ResponseServerCode;
 import com.typicode.jsonplaceholder.questions.posts.ResponsePosts;
 import com.typicode.jsonplaceholder.tasks.posts.GetPostsTask;
 import io.cucumber.java.en.*;
@@ -24,8 +23,9 @@ public class PostsStepDefinitions {
     public void thePostsShouldAppearSuccessfully() {
         admin.should(
                 seeThat(
-                        "The complete response is",
-                        res -> new ResponsePosts().answeredBy(admin).
+                        "The first post's title is",
+                        res -> new ResponsePosts().answeredBy(admin).get(0).getTitle(),
+                        equalTo("sunt aut facere repellat provident occaecati excepturi optio reprehenderit")
                 )
         );
     }
